@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/permissions_fragment">
+
+    <fragment
+        android:id="@+id/permissions_fragment"
+        android:name="com.example.cameraapp.fragments.PermissionsFragment"
+        tools:layout="@layout/fragment_image_capture_fragment"
+        android:label="PermissionsFragment">
+
+        <action
+            android:id="@+id/action_permissions_to_camera"
+            app:destination="@id/imageCapture_fragment"
+            app:popUpTo="@id/permissions_fragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/imageCapture_fragment"
+        tools:layout="@layout/fragment_image_capture_fragment"
+        android:name="com.example.cameraapp.fragments.ImageCaptureFragment"
+        android:label="ImageCaptureFragment">
+
+        <action
+            android:id="@+id/action_camera_to_gallery"
+            app:destination="@id/gallery_fragment" />
+
+        <action
+            android:id="@+id/action_camera_to_permissions"
+            app:destination="@id/permissions_fragment"
+            app:popUpTo="@id/imageCapture_fragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_camera_fragment_to_videoCaptureFragment"
+            app:destination="@id/videoCaptureFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/gallery_fragment"
+        tools:layout="@layout/fragment_gallery"
+        android:name="com.example.cameraapp.fragments.GalleryFragment"
+        android:label="GalleryFragment">
+        <argument
+            android:name="root_directory"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_gallery_fragment_to_imageCaptureFragment"
+            app:destination="@id/imageCapture_fragment" />
+        <action
+            android:id="@+id/action_gallery_fragment_to_videoCaptureFragment"
+            app:destination="@id/videoCaptureFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/videoCaptureFragment"
+        tools:layout="@layout/fragment_video_capture_fragment"
+        android:name="com.example.cameraapp.fragments.VideoCaptureFragment"
+        android:label="VideoCaptureFragment">
+        <action
+            android:id="@+id/action_videoCapture_fragment_to_imageCaptureFragment"
+            app:destination="@id/imageCapture_fragment" />
+        <action
+            android:id="@+id/action_videoCapture_to_gallery"
+            app:destination="@id/gallery_fragment" />
+    </fragment>
+
+</navigation>
